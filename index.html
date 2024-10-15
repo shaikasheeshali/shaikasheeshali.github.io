@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Shaik Asheesh Ali">
+    <meta name="description" content="I am a young developer showcasing my details, experiences and projects via this portfolio.">
+    <meta name="keywords" content="Shaik Asheesh Ali, Asheesh's Portfolio, E-Safe Finance, Letzchat, Smart and Portable Attendace Recorder">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asheesh's Portfolio</title>
+    <link rel="shortcut icon" href="favicon.jpg" type="image/jpg">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family : Arial, Helvetica, sans-serif;
+            font-size : min(1.2em, 3vw);
+            background-color: rgb(64,64,64);
+            color : white;
+        }
+        
+        /* #nav {
+            color : var(--primary-color);
+            position : fixed;
+            top : -75px;
+            left : 0;
+            right : 0;
+            height: 25px;
+            background-color: rgb(127,255,191);
+            padding : 25px 0;
+            display : flex;
+            justify-content: space-between;
+            transition: top 0.5s ease-in-out;
+        }
+
+        #nav > h3 {
+            text-align: center;
+            margin : 0;
+            min-width: 30%;
+        }
+
+        #nav > div {
+            display : flex;
+            justify-content: space-evenly;
+            width : max(60%, 500px);
+        }
+
+        #nav a {
+            color : var(--primary-color);
+            text-decoration: none;
+            transition: transform 0.1s ease-in-out;
+        }
+
+        #nav a:hover {
+            transform: scale(1.2);
+        }*/
+
+        #home {
+            position: relative;
+            width : 100vw;
+            aspect-ratio: 16/9;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        #home > div {
+            position: absolute;
+            width : 50%;
+            top : 50%;
+            left : 10%;
+            transform: translateY(-50%);
+        }
+
+        #home button {
+            background-color: rgb(127, 255, 191);
+            cursor: pointer;
+            border : none;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        #home > img {
+            position: absolute;
+            width: 50%;
+            max-height: calc(100% - 50px);
+            right : 0;
+            bottom : 25px;
+            filter: drop-shadow(0 0 25px rgb(127,255,191));
+        }
+
+        #nav-check + label, #nav-check {
+            display: none;
+        }
+
+        #nav-check:checked + label {
+            transform: scale(1.5) rotate(45deg);
+        }
+
+        #nav-check:checked ~ #nav {
+            display: flex;
+        }
+
+        #nav {
+            position: fixed;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap : 25px;
+            bottom : 10vh;
+            padding: 10px 25px;
+            border-radius: 25px;
+            overflow: hidden;
+            background-color: rgb(48,48,48);
+            opacity: 0.5;
+        }
+
+        #nav:hover {
+            opacity: 1;
+        }
+
+        #nav > div:hover {
+            cursor: pointer;
+            user-select: none;
+            text-shadow: -5px -5px 10px rgb(127,255,191), 0 0 10px rgb(127,255,191), 5px 5px 10px rgb(127,255,191);
+        }
+
+        #dialog-box {
+            display: none;
+            position: fixed;
+            top : 50vh;
+            left : 50vw;
+            transform: translate(-50%, -50%);
+            width: min(300px, calc(80vw - 50px));
+            padding : 25px;
+            border-radius: 25px;
+            background-image: linear-gradient(to right bottom, rgb(48,48,48), rgb(32,32,32), rgb(48,48,48));
+        }
+
+        #dialog-box > span {
+            position: absolute;
+            top : 25px;
+            right : 25px;
+            transform: translate(50%, -50%) scale(1.5);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        #dialog-box > h5, #dialog-box > h6 {
+            margin : 0;
+        }
+
+        #dialog-box > h5 {
+            margin-top : 25px;
+        }
+
+        #about {
+            background-image : linear-gradient(to right bottom, rgb(72,72,72), rgb(96,96,96), rgb(72,72,72));
+            margin : 25px;
+            padding : 25px;
+            border-radius: 25px;
+            width : 80vw;
+            aspect-ratio: 2/1;
+            font-size: 1.5vw;
+            display : flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #about > img {
+            width : 25%;
+            margin : 25px;
+            border-radius: 10px;
+            filter : contrast(0.8) drop-shadow(0 0 15px rgb(32,32,32));
+        }
+
+        #about > div {
+            width : calc(75% - 50px);
+        }
+
+        #education, #certificates, #projects {
+            width : 80vw;
+        }
+
+        #education > div {
+            display : flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap : 10px;
+        }
+
+        #education > div > div {
+            max-width : 400px;
+            aspect-ratio: 1/1;
+            background-image: linear-gradient(to right bottom, rgb(32,32,32), rgb(48,48,48), rgb(32,32,32));
+            padding : 10px;
+            border-radius: 10px;
+        }
+
+        #education img {
+            width : 100%;
+            height : 50%;
+            border-radius: 10px 10px 0 0;
+            background-color: white;
+        }
+
+        #education h3 {
+            text-align: center;
+        }
+
+        #certificates > div {
+            display: flex;
+            flex-wrap : wrap;
+            gap : 25px;
+        }
+
+        #certificates > div > div {
+            flex : 1 0 min(300px, calc(100% - 50px));
+            background-color: rgb(96,96,96);
+            padding : 25px;
+            border-radius: 25px;
+            box-shadow: 5px 5px 5px rgb(32,32,32);
+            transition: transform 0.25s ease-in-out;
+            user-select: none;
+        }
+
+        #certificates > div > div:hover {
+            transform: scale(1.05);
+            box-shadow: 10px 10px 10px rgb(32,32,32);
+            cursor: pointer;
+        }
+
+        #projects > div {
+            position: relative;
+            display: flex;
+            aspect-ratio: 16/9;
+            border-radius : 25px;
+            overflow: hidden;
+        }
+
+        #projects iframe {
+            opacity : 0.001;
+        }
+        
+        #projects iframe, #projects img {
+            position: absolute;
+            width : 100%;
+            height: 100%;
+            transition: left 1s ease-in-out, opacity 1s;
+        }
+
+        #projects button {
+            background-color: rgb(64,64,64);
+            position : absolute;
+            top : 50%;
+            transform: translateY(-50%);
+            border : none;
+            border-radius: 50%;
+            padding : 10px;
+            font-size: 1.5vw;
+        }
+
+        #projects button:hover {
+            cursor: pointer;
+            background-color: gray;
+        }
+
+        #skills {
+            width : 80vw;
+            margin : 25px;
+            user-select: none;
+        }
+
+        #skills > input {
+            display: none;
+        }
+
+        #skills > input:checked + label {
+            background-color: rgb(48,48,48);
+        }
+
+        #skills > label {
+            display: inline-block;
+            background-color: rgb(32,32,32);
+            border : none;
+            border-radius : 10px;
+            padding : 10px;
+            cursor : pointer;
+            margin : 5px;
+            font-size: 0.8em;
+        }
+
+        #conceptual:checked ~ #skills-conceptual {
+            display: flex;
+        }
+        #technical:checked ~ #skills-technical {
+            display: flex;
+        }
+
+        #skills-technical, #skills-conceptual {
+            background-color: rgb(32,32,32);
+            padding : 25px;
+            border-radius: 25px;
+            display: none;
+            flex-wrap : wrap;
+            justify-content: center;
+            gap : 10px;
+        }
+
+        #skills-conceptual > p {
+            padding : 10px;
+            border-radius: 10px;
+            background-image: linear-gradient(to right bottom, rgb(64,64,64), rgb(48,48,48), rgb(64,64,64));
+            cursor: pointer;
+        }
+
+        #skills-technical > div {
+            width : 50px;
+            height : 50px;
+            padding : 10px;
+            border-radius: 10px;
+            background-image: linear-gradient(to right bottom, rgb(64,64,64), rgb(48,48,48), rgb(64,64,64));
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        #skills-technical > div:hover, #skills-conceptual > p:hover {
+            background-image: linear-gradient(to right bottom, rgb(48,48,48), rgb(32,32,32), rgb(48,48,48));
+        }
+
+        #skills-technical img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #contact {
+            width : 80vw;
+            display : flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap : 10px;
+        }
+
+        #contact > div {
+            display: flex;
+        }
+
+        #contact input {
+            display: none;
+        }
+
+        #contact label {
+            width : 25px;
+            height : 25px;
+            padding : 5px;
+            border-radius: 5px;
+            background-color: rgb(32,32,32);
+            cursor : pointer;
+            z-index : 0;
+        }
+
+        #contact img {
+            max-width: 100%;
+            max-height: 100%;
+            filter : grayscale(100%);
+        }
+
+        #contact input:checked + a {
+            display : block;
+            margin-left : -5px;
+        }
+
+        #contact a {
+            display: none;
+            color : white;
+            text-decoration: none;
+            height : 25px;
+            padding : 5px 10px;
+            margin : 0;
+            border-radius: 0 5px 5px 0;
+            background-color: rgb(48,48,48);
+        }
+
+        #contact a:hover {
+            color : rgb(0, 127, 255);
+            cursor : pointer;
+        }
+
+        @media (max-width:600px) {
+            #about {
+                aspect-ratio: 1/1.5;
+                font-size: 2.5vw;
+                flex-direction: row;
+            }
+
+            #about > img {
+                width : 60%;
+            }
+
+            #about > div {
+                width: 100%;
+            }
+
+            #nav {
+                display: none;
+                bottom: 75px;
+                right : 10px;
+                padding: 25px 50px;
+                flex-direction: column;
+                opacity: 1;
+            }
+
+            #nav-check + label {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                bottom: 25px;
+                right : 25px;
+                padding: 10px;
+                height: 10px;
+                width : 10px;
+                border-radius: 50%;
+                background-color: rgb(96,96,96);
+                transform: scale(1.5);
+                transition: transform 0.25s ease-in-out;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="home">
+        <div>
+            <h1>I am a Software Developer</h1>
+            <button onclick="window.location='https://drive.google.com/file/d/1ad-ZbPk867JRS96619_9OnnF3qJHa3JH/preview'">view my resume</button>
+        </div>
+        <img src="bg.png" alt="Programming Anime Character">
+    </div>
+    <div id="about">
+        <img src="profile.png">
+        <div>
+            <b>Name : </b>Shaik Asheesh ali<br>
+            <b>Highest Degree : </b>BTech in CSE<br>
+            <b>Language : </b>Telugu, Hindi and English<br>
+            <b>Interests : </b>Solving riddles &  puzzles<br><br>
+            As a dedicated software developer, I am driven by a passion for problem-solving and innovation. I enjoy transforming complex challenges into simple, effective solutions, ensuring high performance and scalability in all projects. My approach is grounded in a strong commitment to writing clean, maintainable code, while keeping an eye on long-term sustainability and the future needs of clients and users alike.<br>I thrive in dynamic environments where collaboration and adaptability are key, and I consistently seek opportunities for growth and learning. Staying up-to-date with emerging trends and technologies is a priority, as I believe that continuous improvement is essential in delivering cutting-edge solutions. My goal is to contribute to impactful projects that enhance user experiences and streamline processes, ultimately making a meaningful difference in both the tech landscape and the lives of end-users.
+        </div>
+    </div>
+    <div id="education">
+        <h2>Education</h2>
+        <div>
+            <div>
+                <img src="pics/school.jpg" alt="Sri Chaitanya School">
+                <h3>Schooling - State Board</h3>
+                <p>Graduated in 2019</p>
+                <p>GPA : 9.7</p>
+            </div>
+            <div>
+                <img src="pics/college.jpg" alt="BIIT Junior College">
+                <h3>Intermediate - MPC</h3>
+                <p>Graduated in 2021</p>
+                <p>Percentage : 89.4</p>
+            </div>
+            <div>
+                <img src="pics/university.png" alt="VIT-AP University">
+                <h3>BTECH - CSE</h3>
+                <p>Graduated in 2025 (tentative)</p>
+                <p>Current CGPA : 8.52</p>
+            </div>
+        </div>
+    </div>
+    <div id="certificates">
+        <h2>Certificates</h2>
+        <div>
+            <div onclick="window.location='https://smartinternz.com/internships/google_developers/929b0d542527c6c06c5368c0b75f5998'">
+                <h3>Android App Development</h3>
+                <h4>Issued by SmartInternz</h4>
+            </div>
+            <div onclick="window.location='https://drive.google.com/file/d/1rryU3lpOrowMy7f6B7sajlUJt8QoCAOO/view?usp=drive_link'">
+                <h3>Certified Ethical Hacker</h3>
+                <h4>Issued by EC-Council</h4>
+            </div>
+            <div onclick="window.location='https://drive.google.com/file/d/1JlAa_bULi5o3mhRo40Mki1LIAwASG-0o/view?usp=sharing'">
+                <h3>Project based Python Programming</h3>
+                <h4>Issued by VIT-AP University</h4>
+            </div>
+            <div onclick="window.location='https://drive.google.com/file/d/1PTJ8Nce5BIvokO2BJKmPC-iuVap7Sjua/view?usp=sharing'">
+                <h3>C Programming</h3>
+                <h4>Issued by VIT-AP University</h4>
+            </div>
+            <div onclick="window.location='https://drive.google.com/file/d/1_1Qn-jYOZtqiSMUeIJnOF38PNpujvHlD/view?usp=sharing'">
+                <h3>Basics of Arduino programming</h3>
+                <h4>Issued by VIT-AP University</h4>
+            </div>
+        </div>
+    </div>
+    <div id="projects">
+        <h2>Projects</h2>
+        <div>
+            <img src="pics/website.png" alt="E-Safe Finance Thumbnail">
+            <iframe src="https://drive.google.com/file/d/1iAEZ-O4VkEfJJ0bvV8Us6MOXBlXrDaVZ/preview" allow="autoplay" frameborder="0" allowfullscreen></iframe>
+            <img src="pics/app.png" alt="Letzchat Thumbnail">
+            <iframe src="https://drive.google.com/file/d/1PuqQVU805q5MUiLoCcH3BUeH87K85Jf6/preview" allow="autoplay" frameborder="0" allowfullscreen></iframe>
+            <img src="pics/iot.png" alt="Smart and Portable Attendace Recorder Thumbnail">
+            <iframe src="https://drive.google.com/file/d/135scpv4RpH007wS3HN8fOGxw_QqlauBA/preview" allow="autoplay" frameborder="0" allowfullscreen></iframe>
+            <button style="left:5%;" onclick="--pos; goto()">&#x2B05;</button>
+            <button style="right:5%;" onclick="++pos; goto()">&#x2B95;</button>
+        </div>
+    </div>
+    <div id="skills">
+        <h2>Skills</h2>
+        <input type="radio" name="skill-type" id="conceptual" checked>
+        <label for="conceptual">Conceptual Skills</label>
+        <input type="radio" name="skill-type" id="technical">
+        <label for="technical">Technical Skills</label>
+        <div id="skills-conceptual">
+            <p onclick="search(this.innerHTML)" >Data Structures</p>
+            <p onclick="search(this.innerHTML)" >Database Management System</p>
+            <p onclick="search(this.innerHTML)" >Operating System</p>
+            <p onclick="search(this.innerHTML)" >Computer Networks</p>
+            <p onclick="search(this.innerHTML)" >Web Development</p>
+            <p onclick="search(this.innerHTML)" >Front-End Development</p>
+            <p onclick="search(this.innerHTML)" >Back-End Development</p>
+            <p onclick="search(this.innerHTML)" >Android App Development</p>
+            <p onclick="search(this.innerHTML)" >Android JetPack Compose</p>
+            <p onclick="search(this.innerHTML)" >User Interaction</p>
+            <p onclick="search(this.innerHTML)" >User Experience</p>
+            <p onclick="search(this.innerHTML)" >Penetration Testing</p>
+            <p onclick="search(this.innerHTML)" >Network Scanning</p>
+            <p onclick="search(this.innerHTML)" >Internet Of Things</p>
+        </div>
+        <div id="skills-technical">
+            <div onclick="search(this.getAttribute('title'))" title="Python">
+                <img src="pics/python.png" alt="Python">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="Java">
+                <img src="pics/java.png" alt="Java">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="C">
+                <img src="pics/c.png" alt="C">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="HTML">
+                <img src="pics/html.png" alt="HTML">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="CSS">
+                <img src="pics/css.png" alt="CSS">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="JavaScript">
+                <img src="pics/js.png" alt="JavaScript">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="ReactJS">
+                <img src="pics/react.png" alt="ReactJS">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="PHP">
+                <img src="pics/php.png" alt="PHP">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="MySQL">
+                <img src="pics/mysql.png" alt="MySQL">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="Kotlin">
+                <img src="pics/kotlin.png" alt="Kotlin">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="Firebase">
+                <img src="pics/firebase.webp" alt="Firebase">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="Shell Scripting">
+                <img src="pics/bash.png" alt="Bash">
+            </div>
+            <div onclick="search(this.getAttribute('title'))" title="Arduino">
+                <img src="pics/arduino.png" alt="Arduino">
+            </div>
+        </div>
+    </div>
+    <div id="contact">
+        <div>Contact via </div>
+        <div>
+            <label for="linkedin">
+                <img src="pics/linkedin.png" alt="LinkedIn">
+            </label>
+            <input type="checkbox" id="linkedin">
+            <a href="https://www.linkedin.com/in/shaikasheeshali/">linkedin.com/in/shaikasheeshali</a>
+        </div>
+        <div>
+            <label for="email">
+                <img src="pics/email.webp" alt="Email">
+            </label>
+            <input type="checkbox" id="email">
+            <a href="mailto:asheeshali1100@gmail.com">asheeshali1100@gmail.com</a>
+        </div>
+        <div>
+            <label for="phone">
+                <img src="pics/phone.webp" alt="Phone">
+            </label>
+            <input type="checkbox" id="phone">
+            <a>+91 7416751347</a>
+        </div>
+    </div>
+    <div id="dialog-box"></div>
+    <input type="checkbox" id="nav-check">
+    <label for="nav-check">+</label>
+    <div id="nav">
+        <div onclick="window.location='#about'" >About</div>
+        <div onclick="window.location='#education'" >Education</div>
+        <div onclick="window.location='#certificates'" >Certificates</div>
+        <div onclick="window.location='#projects'" >Projects</div>
+        <div onclick="window.location='#skills'" >Skills</div>
+        <div onclick="window.location='#contact'" >Contact</div>
+    </div>
+    <script>
+        const ele = document.querySelectorAll("#projects iframe");
+        const tbn = document.querySelectorAll("#projects img");
+        let pos = 0;
+        function goto() {
+            if(pos==-1) pos++;
+            if(ele.length==pos) pos--;
+            for(let i = 0; i<ele.length; i++) {
+                if(i<=pos) {
+                    ele[i].style.left = 0;
+                    tbn[i].style.left = 0;
+                } else {
+                    ele[i].style.left = "100%";
+                    tbn[i].style.left = "100%";
+                }
+            }
+        }
+        goto(pos);
+        
+        setInterval(()=>{
+            for(let i = 0; i<ele.length; i++)
+                if(document.activeElement == ele[i])
+                    ele[i].style.opacity = "1";
+        },100);
+
+        const edu = {"VIT-AP University":["Python", "Java", "MySQL", "Shell Scripting", "Data Structures", "Database Management System", "Operating System", "Computer Networks", "Web Development", "Android App Development"]};
+        const cer = {"Android App Development":["Android App Development", "Android JetPack Compose", "Kotlin"], "Certified Ethical Hacker":["Operating System", "Shell Scripting", "Penetration Testing", "Network Scanning"], "Project based Python Programming":["Python"], "C Programming":["C"], "Basics of Arduino Programming":["Arduino, Internet Of Things"]};
+        const pro = {"E-Safe Finance":["Web Development", "Front-End Development", "Back-End Development", "User Interaction", "User Experience", "HTML", "CSS", "JavaScript", "PHP", "MySQL"], "Letzchat":["Android App Development", "Android JetPack Compose", "User Interaction", "User Experience", "Kotlin", "Firebase"], "Smart and Portable Attendance Recorder":["Arduino", "Internet Of Things"]};
+        const dialog = document.getElementById("dialog-box");
+        function search(text) {
+            let temp = "<span onclick=\"this.parentNode.style.display='none'\">-</span>";
+            dialog.style.display = "block";
+            let e = true, c = true; p = true;
+            for(i in edu)
+                if(edu[i].includes(text)) {
+                    if(e) {
+                        temp += "<h5>Education</h5><h6>"+i;
+                        e = !e;
+                    }else
+                        temp += ", "+i;
+                }
+            if(!e)
+                temp += "</h6>";
+            for(i in cer)
+                if(cer[i].includes(text)) {
+                    if(c) {
+                        temp += "<h5>Certificates</h5><h6>"+i;
+                        c = !c;
+                    } else
+                        temp += ", "+i;
+                }
+            if(!c)
+                temp += "</h6>";
+            for(i in pro)
+                if(pro[i].includes(text)) {
+                    if(p) {
+                        temp += "<h5>Projects</h5><h6>"+i;
+                        p = !p;
+                    } else
+                        temp += ", "+i;
+                }
+            if(!p)
+                temp += "</h6>";
+            dialog.innerHTML = temp;
+        }
+
+        /*let curr, prev = window.scrollY;
+        let div = document.querySelectorAll("body > div");
+        let nav = document.querySelectorAll("#nav a");
+        window.onscroll = () => {
+            curr = window.scrollY;
+            if(curr-prev>=0)
+                document.getElementById("nav").style.top = "-75px";
+            else
+                document.getElementById("nav").style.top = "0";
+            prev = curr;
+            
+            for(let i = 0; i<nav.length; i++)
+                nav[i].style.transform = "";
+            for(let i=div.length-1; i>1; i--) {
+                if(div[i].getBoundingClientRect().top<=0) {
+                    nav[i-2].style.transform = "scale(1.25)";
+                    break;
+                }
+            }
+        }*/
+    </script>
+</body>
+</html>
